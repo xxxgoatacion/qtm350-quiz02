@@ -1,7 +1,7 @@
 project:
   type: website
 
-output-dir: site
+output-dir: docs
 
 website:
   title: "Gapminder 数据集网站"
