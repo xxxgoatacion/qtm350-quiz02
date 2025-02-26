@@ -1,0 +1,42 @@
+---
+title: "Life Expectancy and GDP per Capita"
+---
+
+# Life Expectancy and GDP per Capita
+
+This page demonstrates the relationship between life expectancy and GDP per capita. The plot below uses a logarithmic scale for GDP per capita to better display the data, with different colors representing different years.
+
+```{r}
+# Load necessary libraries
+library(ggplot2)
+library(dplyr)
+library(readr)
+
+# Read the CSV file using read_csv for robust type inference
+# Replace the path below with your actual path if needed
+gapminder <- read_csv("D:/QTM530/qtm350-quiz02/gapminder.csv")
+
+# Inspect the structure of the dataset to check column types
+str(gapminder)
+
+# Convert columns to appropriate types if necessary
+# This step ensures that numeric and integer columns are correctly typed
+gapminder <- gapminder %>%
+  mutate(
+    year = as.integer(year),
+    life_expectancy = as.numeric(life_expectancy),
+    population_millions = as.numeric(population_millions),
+    gdp_per_capita = as.numeric(gdp_per_capita)
+  )
+
+# Create a scatter plot with a logarithmic scale for the GDP per capita axis
+ggplot(gapminder, aes(x = gdp_per_capita, y = life_expectancy, color = factor(year))) +
+  geom_point(alpha = 0.6) +       # Add points with transparency
+  scale_x_log10() +               # Apply log scale to GDP per capita axis
+  labs(
+    x = "GDP per Capita (log scale)",
+    y = "Life Expectancy",
+    color = "Year"
+  ) +
+  theme_minimal()                 # Use a minimal theme for a clean look
+```

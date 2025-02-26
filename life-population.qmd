@@ -1,0 +1,40 @@
+---
+title: "Life Expectancy and Population"
+---
+
+# Life Expectancy and Population
+
+This page explores the relationship between life expectancy and population (in millions) from the Gapminder dataset. The scatter plot below colors points by continent.
+
+```{r}
+# Load required libraries
+library(ggplot2)
+library(dplyr)
+library(readr)
+
+# Read the CSV file using read_csv
+gapminder <- read_csv("D:/QTM530/qtm350-quiz02/gapminder.csv")
+
+# Inspect the data structure
+str(gapminder)
+
+# Convert columns to appropriate types if necessary
+gapminder <- gapminder %>%
+  mutate(
+    year = as.integer(year),
+    life_expectancy = as.numeric(life_expectancy),
+    population_millions = as.numeric(population_millions),
+    gdp_per_capita = as.numeric(gdp_per_capita)
+  )
+
+# Create a scatter plot of life expectancy vs. population,
+# with different colors representing continents.
+ggplot(gapminder, aes(x = population_millions, y = life_expectancy, color = continent)) +
+  geom_point(alpha = 0.6) +  # Add points with some transparency
+  labs(
+    x = "Population (millions)",
+    y = "Life Expectancy",
+    color = "Continent"
+  ) +
+  theme_minimal()  # Use a minimal theme for clarity
+```

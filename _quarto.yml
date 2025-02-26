@@ -1,0 +1,21 @@
+project:
+  type: website
+
+output-dir: docs
+
+website:
+  title: "Gapminder 数据集网站"
+  navbar:
+    left:
+      - text: "Home"
+        href: index.qmd
+      - text: "Life Expectancy and GDP per Capita"
+        href: life-gdp.qmd
+      - text: "Life Expectancy and Population"
+        href: life-population.qmd
+      - text: "Country Analysis"
+        href: country.qmd
+
+format:
+  html:
+    theme: cosmo
